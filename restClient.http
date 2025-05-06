@@ -1,0 +1,13 @@
+### Créer un nouvel utilisateur (valide)
+POST http://localhost:3000/api/users/inscription
+Content-Type: application/json
+
+{
+  "username": "APITESTUSER",
+  "hashedpassword": "MotDePasseSecurise123"
+}
+
+### Tester l'API 
+GET http://localhost:3000/api/
+Content-Type: application/json
+
