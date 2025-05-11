@@ -24,7 +24,7 @@ const schemaMesAbonnementsId = JOI.object({}).required();
 
 // Ce schéma s'applique à la modification d'un abonnement par son ID.
 const schemaMesAbonnementsIdModifier = JOI.object({
-    subscriptionId: JOI.number().integer().positive().required(),
+    // subscriptionId: JOI.number().integer().positive().required(),
     name: JOI.string().min(3).max(50).required(),
     price: JOI.number().integer().positive().required(),
     date: JOI.number().integer().positive().required(),

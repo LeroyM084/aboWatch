@@ -116,7 +116,7 @@ router.get('/mesAbonnements/:id',
 // Suppression d'un abonnement par son ID avec sequelize
 router.delete('/mesAbonnements/:id', 
     tokenValidation, 
-    dataTypeValidation(schemaMesAbonnementsId),
+    // dataTypeValidation(schemaMesAbonnementsId),
     async (req, res) => {
     const userId = req.userId;
     const subscriptionId = req.params.id;

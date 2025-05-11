@@ -6,7 +6,6 @@ const sequelize = require('../config/dbConfig'); // Assurez-vous que sequelize e
 const cleanUpDatabaseAfter_createUser = async () => {
     // Supprimer les abonnements liés aux utilisateurs de test
     
-    const userIds = APITESTUSER_IDS.map(abonnement => abonnement.userId);      
     await Abonnements.destroy({
         where: {
             name: "Abonnement Test",
