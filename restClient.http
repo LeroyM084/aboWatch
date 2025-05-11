@@ -3,11 +3,19 @@ POST http://localhost:3000/api/users/inscription
 Content-Type: application/json
 
 {
-  "username": "APITESTUSER",
-  "hashedpassword": "MotDePasseSecurise123"
+  "username": "APIPIII",
+  "password": "MotDePasseSecurise123"
 }
 
 ### Tester l'API 
-GET http://localhost:3000/api/
-Content-Type: application/json
 
+POST http://localhost:3000/api/abonnements/nouvelAbonnement
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjc2LCJpYXQiOjE3NDY5NzE2MzEsImV4cCI6MTc0Njk3NTIzMX0.270HxhBY69svzhLEPs15H-o3Yq5HWCwmMF9WOXDn0S0
+
+{
+  "userId": 76,
+  "name": "Test",
+  "price": 10,
+  "date": 10
+}

@@ -48,7 +48,6 @@ router.post ('/inscription',
         } 
         hashedPassword = await bcrypt.hash(password, BCRYPT_FORCE);
         const user = await User.create({ username, hashedPassword });
-        console.log("Utilisateur créé :", user);
         
 
         // Génération du token JWT
@@ -82,8 +81,6 @@ router.post('/connexion',
         if (!user)
         return res.status(401).json({ error: 'Utilisateur non trouvé' });
         
-        console.log("Mot de passe reçu :", password);
-        console.log("Mot de passe dans la base de données :", user.hashed)
         const isMatch = await bcrypt.compare(password, user.hashedPassword);
     
         if (!isMatch)

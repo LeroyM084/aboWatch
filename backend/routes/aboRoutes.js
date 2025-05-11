@@ -6,7 +6,8 @@ const router = express.Router();
 // les schémas de validation des données et la fonction de validation du type de données
 const db = require('../config/dbConfig');
 
-const { Subscription } = require('../models/abonnements');
+const Subscription  = require('../models/abonnements');
+const User = require('../models/user'); // Importation du modèle User
 
 const tokenValidation = require('../middleware/tokenValidation');
 
@@ -34,17 +35,23 @@ router.post('/nouvelAbonnement',
       return res.status(400).json({ error: 'Champs requis manquants' });
 
     try {
+        // Vérification que l'userId existe dans la table User
+        const userExists = await User.findByPk(userId);
+        if (!userExists) {
+            return res.status(404).json({ error: 'Utilisateur non trouvé' });
+        }
+
         // Création de l'abonnement avec Sequelize
         const subscription = await Subscription.create({
             userId,
-            name: name,    // Assurez-vous que le champ "aboName" existe dans la table
-            price: price,  // Pareil pour "aboPrice"
-            date: date     // Pareil pour "aboDate"
+            name,
+            price,
+            date
         });
 
         res.status(201).json({
             message: 'Abonnement créé avec succès',
-            subId: subscription.id  // Utilisation de "subscription.id" pour récupérer l'ID de l'abonnement créé
+            subId: subscription.id
         });
     } catch (err) {
         console.error('Erreur création abonnement :', err);
@@ -57,9 +64,19 @@ router.get('/mesAbonnements',
     tokenValidation, 
     dataTypeValidation(schemaMesAbonnements),
     async (req, res) => {
-    const userId = req.userId;
+    const userId = req.body.userId;
+
+    if (!userId) {
+        return res.status(400).json({ error: 'Champs requis manquants' });
+    }
 
     try {
+        // Vérification que l'userId existe dans la table User
+        const userExists = await User.findByPk(userId);
+        if (!userExists) {
+            return res.status(404).json({ error: 'Utilisateur non trouvé' });
+        }
+
         // Récupération des abonnements de l'utilisateur avec Sequelize
         const subscriptions = await Subscription.findAll({
             where: { userId: userId }
@@ -68,14 +85,14 @@ router.get('/mesAbonnements',
         res.status(200).json(subscriptions);
     } catch (err) {
         console.error('Erreur récupération abonnements :', err);
-        res.status(500).json({ error: 'Erreur serveur' });
+        res.status(500).json({ error: 'Erreur serveur'});
     }
 });
 
 // Récupération d'un abonnement par son ID avec sequelize
 router.get('/mesAbonnements/:id', 
     tokenValidation, 
-    dataTypeValidation(schemaMesAbonnementsId),
+    //dataTypeValidation(schemaMesAbonnementsId), // debug 
     async (req, res) => {
     const userId = req.userId;
     const subscriptionId = req.params.id;

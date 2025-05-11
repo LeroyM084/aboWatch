@@ -10,7 +10,7 @@ const schemaNouvelAbonnement = JOI.object({
     userId: JOI.number().integer().positive().required(),
     name: JOI.string().min(3).max(50).required(),
     price: JOI.number().integer().positive().required(),
-    date: JOI.number().integer().positive().required(),
+    date: JOI.number().integer().positive().required().max(31),
 }).required();
 
 // Ce schéma s'applique à la récupération de tous les abonnements d'un utilisateur.
@@ -20,9 +20,7 @@ const schemaMesAbonnements = JOI.object({
 
 // Ce schéma s'applique à la récupération d'un abonnement par son ID. 
 // Ce schéma s'applique aussi à la suppression d'un abonnement par son ID.
-const schemaMesAbonnementsId = JOI.object({
-    subscriptionId: JOI.number().integer().positive().required(),
-}).required();
+const schemaMesAbonnementsId = JOI.object({}).required();
 
 // Ce schéma s'applique à la modification d'un abonnement par son ID.
 const schemaMesAbonnementsIdModifier = JOI.object({

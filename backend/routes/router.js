@@ -10,7 +10,7 @@ const aboRoutes = require('./aboRoutes');
 
 // Ce fichier permet de centraliser les routes de l'API. Elles seront transmises à server.js pour petre lancées.
 router.use('/users', userRoutes);
-router.use('/subscriptions', aboRoutes);
+router.use('/abonnements', aboRoutes);
 
 module.exports = router;
 
