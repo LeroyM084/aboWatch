@@ -78,11 +78,14 @@ router.get('/mesAbonnements',
         }
 
         // Récupération des abonnements de l'utilisateur avec Sequelize
-        const subscriptions = await Subscription.findAll({
+        const subscriptionsList = await Subscription.findAll({
             where: { userId: userId }
         });
 
-        res.status(200).json(subscriptions);
+        // nom de l'abonnement, date de renouvellement, prix en € 
+        const subscriptionListImportantdata = 
+
+        res.status(200).json(subscriptionsList);
     } catch (err) {
         console.error('Erreur récupération abonnements :', err);
         res.status(500).json({ error: 'Erreur serveur'});

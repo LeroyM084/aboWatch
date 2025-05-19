@@ -20,5 +20,11 @@ if (process.env.NODE_ENV !== 'test') {
 // Routes
 app.use('/api', router);
 
+app.get('/', (res)=>{
+    res.status(200).json({
+        message : 'Salut !'
+    })
+})
+
 // Exporter l'app pour utilisation dans les tests
 module.exports = app;
