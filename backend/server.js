@@ -7,7 +7,6 @@ const router = require('./routes/router'); // Assure-toi que le chemin est corre
 const app = express();
 const PORT = 4500;
 
-// Middlewares
 app.use(cors());
 app.use(express.json());
 

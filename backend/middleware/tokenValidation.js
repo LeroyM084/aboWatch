@@ -1,4 +1,6 @@
 // Ce fichier contient la fonction de validation du token JWT reçues. 
+const dotenv = require('dotenv');
+dotenv.config(); // Charger les variables d'environnement
 const JWT_KEY = process.env.JWT_KEY;
 const jwt = require('jsonwebtoken');
 

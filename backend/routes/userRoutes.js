@@ -60,7 +60,7 @@ router.post ('/inscription',
         });
     } catch (err) {
         console.error('Erreur création utilisateur :', err);
-        res.status(500).json({ error: 'Erreur serveur' });
+        res.status(500).json({ error: 'Erreur serveur ici', err });
     }
     }
 );
