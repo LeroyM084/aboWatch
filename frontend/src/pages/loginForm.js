@@ -17,6 +17,7 @@ const LoginForm = () => {
     try {
       const response = await api.post('/api/users/connexion', { username, password });
       localStorage.setItem('authToken', response.data.token);
+      localStorage.setItem('username', response.data.username) // Probleme depuis que j'ai ajouter depuis cette ligne
       window.location.href = '/dashboard';
     } catch (err) {
       // Amélioration de la gestion des erreurs

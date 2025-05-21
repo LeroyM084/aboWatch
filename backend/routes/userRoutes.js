@@ -91,6 +91,7 @@ router.post('/connexion',
         res.status(200).json({
         message: 'Connexion réussie',
         userId: user.id,
+        username:user.username, // Porblème depuis que j'ai ajouter cette ligne
         token
         });
     } catch (err) {

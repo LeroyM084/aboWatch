@@ -1,10 +1,10 @@
 ### Créer un nouvel utilisateur (valide)
 
-POST http://localhost:3000/api/users/inscription
+POST http://localhost:3000/api/users/connexion
 Content-Type: application/json
 
 {
-  "username": "APIPIII3",
+  "username": "APIPIII4",
   "password": "MotDePasseSecurise123"
 }
 
