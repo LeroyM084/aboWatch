@@ -62,12 +62,12 @@ router.post('/nouvelAbonnement',
 // Récupération de tous les abonnements d'un utilisateur avec sequelize
 router.get('/mesAbonnements', 
     tokenValidation, 
-    dataTypeValidation(schemaMesAbonnements),
+    // dataTypeValidation(schemaMesAbonnements),
     async (req, res) => {
-    const userId = req.body.userId;
+    const userId = req.userId;
 
     if (!userId) {
-        return res.status(400).json({ error: 'Champs requis manquants' });
+        return res.status(400).json({ error: 'Champs requis manquants, pas de UserId trouvé dans le token' });
     }
 
     try {
