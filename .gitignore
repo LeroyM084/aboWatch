@@ -60,6 +60,7 @@ frontend/.vite/
 # misc
 .DS_Store
 *.pem
+*.drawio
 
 # debug
 npm-debug.log*
