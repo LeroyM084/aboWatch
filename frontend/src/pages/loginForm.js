@@ -1,26 +1,26 @@
 import React, { useState } from 'react';
 import api from '../services/api';
 import { Link } from 'react-router-dom';
-import '../style/LoginForm.css'; // Nous allons créer ce fichier CSS
+import '../style/LoginForm.css';
 
 const LoginForm = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError('');
-    
+
     try {
       const response = await api.post('/api/users/connexion', { username, password });
       localStorage.setItem('authToken', response.data.token);
-      localStorage.setItem('username', response.data.username) // Probleme depuis que j'ai ajouter depuis cette ligne
+      localStorage.setItem('username', response.data.username);
       window.location.href = '/dashboard';
     } catch (err) {
-      // Amélioration de la gestion des erreurs
       if (err.response && err.response.status === 401) {
         setError('Nom d\'utilisateur ou mot de passe incorrect');
       } else {
@@ -39,7 +39,7 @@ const LoginForm = () => {
           <h2>ABOWATCH</h2>
           <p className="login-subtitle">Bienvenue sur notre plateforme</p>
         </div>
-        
+
         {error && (
           <div className="error-message">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -50,7 +50,7 @@ const LoginForm = () => {
             {error}
           </div>
         )}
-        
+
         <form onSubmit={handleSubmit} className="login-form">
           <div className="form-group">
             <label htmlFor="username">Nom d'utilisateur</label>
@@ -64,29 +64,38 @@ const LoginForm = () => {
               className="form-control"
             />
           </div>
-          
+
           <div className="form-group">
             <label htmlFor="password">Mot de passe</label>
-            <input
-              type="password"
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Entrez votre mot de passe"
-              required
-              className="form-control"
-            />
+            <div className="password-input-wrapper">
+              <input
+                type={showPassword ? 'text' : 'password'}
+                id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Entrez votre mot de passe"
+                required
+                className="form-control"
+              />
+              <button
+                type="button"
+                className="toggle-password"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? "🙈" : "👁️"}
+              </button>
+            </div>
           </div>
-          
-          <button 
-            type="submit" 
+
+          <button
+            type="submit"
             className={`login-button ${loading ? 'loading' : ''}`}
             disabled={loading}
           >
             {loading ? 'Connexion...' : 'Se connecter'}
           </button>
         </form>
-        
+
         <div className="login-footer">
           <p>
             Pas encore de compte ? <Link to="/register" className="register-link">Inscrivez-vous ici</Link>

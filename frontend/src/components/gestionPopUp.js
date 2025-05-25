@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import api from '../services/api';
-import '../style/AddSubPopup.css';
+import '../style/AddSubPopup.css'; // Sensiblkement le même style que AddSubPopup
 import '../style/gestionPopUp.css';
+import { X } from 'lucide-react';
 
 const GestionPopUp = ({ abonnement, onClose }) => {
   const [nom, setNom] = useState(abonnement.name);
@@ -66,6 +67,9 @@ const GestionPopUp = ({ abonnement, onClose }) => {
   return (
     <div className="popup">
       <div className="popup-content">
+        <button className="close-btn" onClick={handleClose}>
+          <X size={20} />
+        </button>
         <h2>Modifier l'abonnement</h2>
         {erreur && <p className="error">{erreur}</p>}
         {success && <p className="success">Abonnement modifié avec succès !</p>}
@@ -115,10 +119,6 @@ const GestionPopUp = ({ abonnement, onClose }) => {
             <button onClick={() => setConfirmationVisible(false)}>Annuler</button>
           </div>
         )}
-
-        <button className="close-btn" onClick={handleClose}>
-          Fermer
-        </button>
       </div>
     </div>
   );

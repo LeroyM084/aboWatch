@@ -61,7 +61,7 @@
 }
 
 .form-control {
-  width: 92%;
+  width:100%;
   padding: 12px 16px;
   border: 1px solid #e1e4e8;
   border-radius: 8px;
@@ -137,4 +137,31 @@
 .error-message svg {
   flex-shrink: 0;
   color: #e74c3c;
+}
+
+.password-input-wrapper {
+  position: relative;
+  width: 86%;
+}
+
+.password-input-wrapper input {
+  width: 100%;
+  padding-right: 40px; /* Laisse de la place pour le bouton */
+}
+
+.password-input-wrapper .toggle-password {
+  position: absolute;
+  right: -40px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 0;
+  color: #333;
+}
+
+.password-input-wrapper input {
+  padding-right: 40px; /* Laisse de la place pour le bouton */
 }

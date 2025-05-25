@@ -4,6 +4,7 @@ import LoginForm from './pages/loginForm';
 import RegisterForm from './pages/registerForm';
 import Presentation from './pages/Presentation';
 import Dashboard from './pages/dashboard';
+import Analyse from './pages/analyse';
 import Layout from './components/Layout';
 import './style/App.css';
 
@@ -33,6 +34,14 @@ function App() {
             <RequireAuth>
               <Layout>
                 <Dashboard />
+              </Layout>
+            </RequireAuth>
+          } />
+
+          <Route path='/analyse' element={
+            <RequireAuth>
+              <Layout>
+                <Analyse />
               </Layout>
             </RequireAuth>
           } />

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import '../style/AddSubPopup.css';
+import { X } from 'lucide-react';
 import api from '../services/api';
+
 
 const AddSubPopup = ({ onClose }) => {
   const [nom, setNom] = useState('');
@@ -54,6 +56,9 @@ const AddSubPopup = ({ onClose }) => {
   return (
     <div className="popup">
       <div className="popup-content">
+        <button className="close-btn" onClick={handleClose}>
+          <X size={20} />
+        </button>
         <h2>Ajouter un abonnement</h2>
         {erreur && <p className="error">{erreur}</p>}
         {success && <p className="success">Abonnement ajouté avec succès !</p>}
@@ -91,7 +96,6 @@ const AddSubPopup = ({ onClose }) => {
             {loading ? 'Chargement...' : 'Ajouter'}
           </button>
         </form>
-        <button className="close-btn" onClick={handleClose}>Fermer</button>
       </div>
     </div>
   );

@@ -107,3 +107,23 @@
   border-color: #3498db;
 }
 
+.popup-content {
+  position: relative; /* Important pour positionner la croix dans le coin du conteneur */
+}
+
+.popup-content .close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #34495e;
+  transition: color 0.2s ease;
+}
+
+.popup-content .close-btn:hover {
+  color: #e74c3c;
+}
+
+
