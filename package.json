@@ -2,7 +2,8 @@
   "name": "abowatch-backend",
   "version": "1.0.0",
   "scripts": {
-    "test": "cross-env NODE_ENV=test jest --runInBand --detectOpenHandles --forceExit"
+    "test": "cross-env NODE_ENV=test jest --runInBand --detectOpenHandles --forceExit",
+    "start" : "./start.sh"  
   },
   "dependencies": {
     "bcrypt": "^5.1.1",

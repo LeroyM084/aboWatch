@@ -32,6 +32,12 @@ const Abonnements = sequelize.define('User', {
     allowNull: false, // Le champ date ne peut pas être null
     field: 'abodate'
   },
+  activeSince:{
+    type :DataTypes.DATE,
+    allowNull: false,
+    field: 'activesince',
+    defaultValue: DataTypes.NOW // Valeur par défaut à la date actuelle
+  }
 }, {
   // Options du modèle
   tableName: 'abonnements', // Nom de la table dans la base de données

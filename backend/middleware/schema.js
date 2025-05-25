@@ -10,6 +10,7 @@ const schemaNouvelAbonnement = JOI.object({
     name: JOI.string().min(3).max(50).required(),
     price: JOI.number().integer().positive().required(),
     date: JOI.number().integer().positive().required().max(31),
+    activeSince: JOI.date().iso().optional()
 }).required();
 
 // Ce schéma s'applique à la récupération de tous les abonnements d'un utilisateur.
@@ -27,6 +28,7 @@ const schemaMesAbonnementsIdModifier = JOI.object({
     name: JOI.string().min(3).max(50).required(),
     price: JOI.number().integer().positive().required(),
     date: JOI.number().integer().positive().required(),
+    activeSince: JOI.date().iso().optional()
 }).required();
 
 // --- Schémas pour valider les données des routes utilisateurs ---

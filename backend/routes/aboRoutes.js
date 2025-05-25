@@ -30,9 +30,9 @@ router.post('/nouvelAbonnement',
     dataTypeValidation(schemaNouvelAbonnement), 
     async (req, res) => {
     const userId = req.userId; // Récupération de l'userId du token
-    const { name, price, date } = req.body;
+    const { name, price, date, activeSince } = req.body;
 
-    if (!name || !price || !date)
+    if (!name || !price || !date || !activeSince)
       return res.status(400).json({ error: 'Champs requis manquants' });
 
     try {
@@ -47,7 +47,8 @@ router.post('/nouvelAbonnement',
             userId,
             name,
             price,
-            date
+            date,
+            activeSince
         });
 
         res.status(201).json({
@@ -83,8 +84,6 @@ router.get('/mesAbonnements',
             where: { userId: userId }
         });
 
-        // nom de l'abonnement, date de renouvellement, prix en € 
-        const subscriptionListImportantdata = 
 
         res.status(200).json(subscriptionsList);
     } catch (err) {
@@ -148,12 +147,12 @@ router.put('/mesAbonnements/:id',
     async (req, res) => {
     const userId = req.userId;
     const subscriptionId = req.params.id;
-    const { name, price, date } = req.body;
+    const { name, price, date, activeSince } = req.body;
 
     try {
         // Modification de l'abonnement par son ID avec Sequelize
         const [updatedCount] = await Subscription.update(
-            { name, price, date },
+            { name, price, date, activeSince },
             { where: { id: subscriptionId, userId: userId } }
         );
 
