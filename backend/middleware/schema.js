@@ -7,7 +7,6 @@ const JOI = require('joi');
 
 // Ce schema s'applique à la création d'un nouvel abonnement.
 const schemaNouvelAbonnement = JOI.object({
-    userId: JOI.number().integer().positive().required(),
     name: JOI.string().min(3).max(50).required(),
     price: JOI.number().integer().positive().required(),
     date: JOI.number().integer().positive().required().max(31),

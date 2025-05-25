@@ -29,9 +29,10 @@ router.post('/nouvelAbonnement',
     tokenValidation, 
     dataTypeValidation(schemaNouvelAbonnement), 
     async (req, res) => {
-    const { userId, name, price, date } = req.body;
+    const userId = req.userId; // Récupération de l'userId du token
+    const { name, price, date } = req.body;
 
-    if (!userId || !name || !price || !date)
+    if (!name || !price || !date)
       return res.status(400).json({ error: 'Champs requis manquants' });
 
     try {
