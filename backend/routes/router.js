@@ -16,9 +16,7 @@ router.use('/analyse', analyseRoutes);
 
 
 // Redirection pour les routes inconnues
-router.get('*', (req, res) => {
-  res.status(404).json({ message: 'Route not found' });
-});
+
 
 module.exports = router;
 

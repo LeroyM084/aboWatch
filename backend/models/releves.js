@@ -30,7 +30,7 @@ const Releves = sequelize.define('Releves', {
     year : {
         type: DataTypes.INTEGER,
         allowNull: false, // Le champ year ne peut pas être null
-        field: 'annee',
+        field: 'year',
         validate :{
             isInt: true, // Doit être un entier
             min: 1000, // Minimum 2000
@@ -42,4 +42,10 @@ const Releves = sequelize.define('Releves', {
         allowNull: false, // Le champ price ne peut pas être null
         field: 'price'
     }
+},{
+  // Options du modèle
+  tableName: 'releves', // Nom de la table dans la base de données
+  timestamps: false, // Désactive la gestion des timestamps (createdAt, updatedAt)
 })
+
+module.exports = Releves;

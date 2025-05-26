@@ -5,14 +5,16 @@ const User = require('../models/user');
 const Abonnement = require('../models/abonnements');
 const Releves = require('../models/releves');
 
+const { Op } = require('sequelize');
+
 const tokenValidation = require('../middleware/tokenValidation');
 
-const datTypeValidation = require('../middleware/dataTypeValidation');
+const dataTypeValidation = require('../middleware/dataTypeValidation');
 const schemaAnalyse = require('../middleware/schemas/analyse');
 
 router.get('/', 
     tokenValidation,
-    dataTypeValidation(schemaAnalyse),
+    // dataTypeValidation(schemaAnalyse),
     async(req,res) => {
         const userId = req.userId;
 
@@ -34,7 +36,7 @@ router.get('/',
 
             // FORMULE POUR CALCUER LE SOMME DE TOUS ABONNEMENTS.PRICE 
             const prixCeMoisCi = abonnements.reduce((total, abonnement) => {
-                acc + abonnement.price;
+                total + abonnement.price;
             }, 0) // -- IMPORTANT
 
             // Formule pour calculer la dépense de cette année : 
@@ -65,7 +67,7 @@ router.get('/',
             })
 
             const prixMoyenAbonnement = prixCeMoisCi / abonnements.length; // -- IMPORTANT
-            const releves = await Releves.findMany({ // -- IMPORTANT
+            const releves = await Releves.findAll({ // -- IMPORTANT
                 where: { userId: userId },
                 limit: 12, // Limite à 12 relevés (un par mois)
                 order: [['year', 'DESC'], ['month', 'DESC']] // Tri par année et mois décroissants
@@ -92,3 +94,5 @@ router.get('/',
     }
 }
 )
+
+module.exports = router;
